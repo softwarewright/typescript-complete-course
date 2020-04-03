@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run build && npx live-server .",
-    "build": "tsc app.ts",
-    "build:watch": "tsc app.ts -w"
+    "build": "tsc",
+    "build:watch": "tsc -w"
   },
   "repository": {
     "type": "git",

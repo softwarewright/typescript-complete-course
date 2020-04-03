@@ -1,29 +1,48 @@
-class Department {
-    name: string;
-    private employees: string[] = [];
-
-    constructor(n: string) {
-        this.name = n;
-    }
-
-    describe() {
-        console.log(`Department: ${this.name}`)
-    }
-
-    addEmployee(employee: string) {
-        this.employees.push(employee);
-    }
-
-    printEmployees() {
-        console.log(this.employees);
-    }
+// type  AddFn = (a: number, b: number) => number
+interface AddFn {
+    (a: number, b: number):number;
 }
 
-const clothing = new Department("Clothing");
+let add: AddFn = (a, b) => {
+    return a + b;
+};
 
-console.log(clothing)
+interface Named {
+    readonly name: string;
+    outputName?:string;
+}
 
-clothing.describe();
-clothing.addEmployee("Darrius")
-clothing.addEmployee("Keionne")
-clothing.printEmployees();
+interface Greetable extends Named {
+    greet(phrase: string): void;
+}
+
+class Person implements Greetable {
+    name: string;
+    age = 30;
+
+    constructor(name: string) {
+        this.name = name;
+    }
+
+    greet(phrase: string): void {
+        console.log(`${phrase} ${name}`);
+    }
+    
+}
+
+let user: Greetable;
+
+user = new Person("James");
+// user = {
+//     name: "Darrius",
+//     age: 25,
+//     greet(phrase:string) {
+//         console.log(phrase);
+//     }
+// };
+
+//fails because it's readonly
+// user.name = "sdfsdfsf"
+
+user.greet('Hello there');
+
